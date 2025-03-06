@@ -1,6 +1,9 @@
 body {
     background-color: #2E2E2E;
     margin: 0;
+    font-family: inter-variable, sans-serif;
+font-style: normal;
+font-variation-settings: "slnt" 0, "wght" 400;
 }
 
 ul {
@@ -71,3 +74,49 @@ justify-content: flex-start;
     flex-direction: row;
 }
   
+.layercontainer { /* Oprava názvu třídy */
+  width: 100%;
+  justify-content: center;
+  height: fit-content;
+  display: flex;  /* Umožní umístění prvků do řady */
+  align-items: center; /* Zarovná prvky vertikálně */
+}
+
+
+.changelayer {
+  font-size: 24px;
+  padding: 15px;
+  background-color: #3F63B5;
+  border-radius: 20px;
+  font-weight: bold;
+  margin-right: 50px;
+  position: relative;
+  outline: none;
+  border: none;
+}
+
+.changelayer:focus {
+  outline: none;
+}
+
+
+.dot {
+  height: 45px;
+  width: 45px;
+  background-color: #C4C4C4;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 25px;
+  transition: background-color 0.3s ease; /* Plynulý přechod barvy */
+}
+
+.dot_active {
+  background-color: #2E2E2E;
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 25px;
+  transition: background-color 0.3s ease; /* Plynulý přechod barvy */
+}
+
