@@ -4,20 +4,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let activeIndex = 0; // Nastavení první aktivní tečky
 
+    function setActiveDot(index) {
+        // Odstraníme aktivní třídu ze všech teček
+        dots.forEach(dot => dot.classList.remove("dot_active"));
+        dots.forEach(dot => dot.classList.add("dot"));
+
+        // Nastavíme aktivní třídu na vybranou tečku
+        dots[index].classList.remove("dot");
+        dots[index].classList.add("dot_active");
+
+        activeIndex = index; // Aktualizujeme aktivní index
+    }
+
+    // Přepínání vrstev tlačítkem "Change Layer"
     button.addEventListener("click", function () {
-        // Najdeme aktuálně aktivní tečku
-        const currentDot = document.querySelector(".dot_active");
-        
-        if (currentDot) {
-            currentDot.classList.remove("dot_active");
-            currentDot.classList.add("dot");
-        }
-
-        // Posuneme index na další tečku (cyklicky)
         activeIndex = (activeIndex + 1) % dots.length;
+        setActiveDot(activeIndex);
+    });
 
-        // Přidáme aktivní třídu nové tečce
-        dots[activeIndex].classList.remove("dot");
-        dots[activeIndex].classList.add("dot_active");
+    // Kliknutí přímo na tečku pro změnu vrstvy
+    dots.forEach((dot, index) => {
+        dot.addEventListener("click", function () {
+            setActiveDot(index);
+        });
     });
 });

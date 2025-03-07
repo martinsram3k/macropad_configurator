@@ -1,85 +1,90 @@
 body {
-    background-color: #2E2E2E;
-    margin: 0;
-    font-family: inter-variable, sans-serif;
-font-style: normal;
-font-variation-settings: "slnt" 0, "wght" 400;
+  background-color: #2E2E2E;
+  margin: 0;
+  font-family: inter-variable, sans-serif;
+  font-style: normal;
+  font-variation-settings: "slnt" 0, "wght" 400;
 }
 
 ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .sidenav {
-    overflow: hidden;
-    background-color: #EEE;
-    width: 100%;
-    min-height: 100vh
-  }
-  
-  .sidenav a {
-    text-align: center;
-    padding: 20px 30px;
-    text-decoration: none;
-    font-size: 17px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
 
-  .icon {
-width: 35px;
-color: #EEE;
-background-color: #2E2E2E;
-padding: 25px;
-border-radius: 50%;
-overflow: visible;
+.sidenav {
+  overflow: hidden;
+  background-color: #EEE;
+  width: 100%;
+  min-height: 100vh
+}
+
+.sidenav a {
+  text-align: center;
+  padding: 20px 30px;
+  text-decoration: none;
+  font-size: 17px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.icon {
+  width: 35px;
+  color: #EEE;
+  background-color: #2E2E2E;
+  padding: 25px;
+  border-radius: 50%;
+  overflow: visible;
 }
 
 .container {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .logo_pozadi {
-    width: 600px;
-    opacity: 20%;
-    padding-left: 40px;
-    rotate: 0deg;
+  width: 600px;
+  opacity: 20%;
+  padding-left: 40px;
+  padding-right: 40px;
+  rotate: 0deg;
 }
 
 .container {
-    display: flex;
-    flex-direction: row;
-justify-content: flex-start;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
 }
 
 .foto_pozadi {
-   position: absolute;
-   left: 200px;
-   top: 10%;
+  position: absolute;
+  left: 200px;
+  top: 10%;
 }
-  
+
 .keypadcontainer {
-    margin-left: auto;
-    width: 45%;
-    min-height: 100vh;
-    background-color: #EEE;
-    padding: 3%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    flex-direction: row;
+  align-items: center;
+  margin-left: auto;
+  width: 45%;
+  min-height: 100vh;
+  background-color: #EEE;
+  padding: 3%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: row;
 }
-  
-.layercontainer { /* Oprava názvu třídy */
+
+.layercontainer {
+  /* Oprava názvu třídy */
   width: 100%;
   justify-content: center;
   height: fit-content;
-  display: flex;  /* Umožní umístění prvků do řady */
-  align-items: center; /* Zarovná prvky vertikálně */
+  display: flex;
+  /* Umožní umístění prvků do řady */
+  align-items: center;
+  /* Zarovná prvky vertikálně */
 }
 
 
@@ -89,7 +94,7 @@ justify-content: flex-start;
   background-color: #3F63B5;
   border-radius: 20px;
   font-weight: bold;
-  margin-right: 50px;
+  margin-right: 25px;
   position: relative;
   outline: none;
   border: none;
@@ -107,7 +112,8 @@ justify-content: flex-start;
   border-radius: 50%;
   display: inline-block;
   margin-left: 25px;
-  transition: background-color 0.3s ease; /* Plynulý přechod barvy */
+  transition: background-color 0.7s ease-in-out;
+  /* Plynulý přechod barvy */
 }
 
 .dot_active {
@@ -117,6 +123,69 @@ justify-content: flex-start;
   border-radius: 50%;
   display: inline-block;
   margin-left: 25px;
-  transition: background-color 0.3s ease; /* Plynulý přechod barvy */
+  transition: background-color 0.7s ease-in-out;
+  /* Plynulý přechod barvy */
 }
 
+.push {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  background: #3F63B5;
+  height: fit-content;
+  width: 100%;
+  text-align: center;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 64px;
+  border-radius: 25px;
+}
+
+.push a {
+  text-decoration: none;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: bold;
+}
+
+.keypad {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: row;
+  width: 100%;
+  margin-bottom: 25px;
+}
+
+.key {
+  font-size: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  background-color: #C4C4C4;
+  color: #3F63B5;
+  border-radius: 20px;
+  margin: 15px;
+  gap: 60px;
+  text-align: center;
+  line-height: 1.1em;
+}
+
+.function {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  background-color: #D1F5FF;
+  height: fit-content;
+  width: 100%;
+  text-align: left;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 40px;
+  border-radius: 25px;
+}
