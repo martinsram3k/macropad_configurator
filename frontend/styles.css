@@ -6,6 +6,14 @@ body {
   font-variation-settings: "slnt" 0, "wght" 400;
 }
 
+
+.container, .keypadcontainer, .sidenav, .key {
+  box-sizing: border-box;
+}
+
+
+
+
 ul {
   list-style-type: none;
   margin: 0;
@@ -27,6 +35,8 @@ ul {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  justify-content: center; /* Zarovná ikony na střed */
+  height: 80px; /* Přidej výšku, pokud se ztratily */
 }
 
 .icon {
@@ -36,6 +46,7 @@ ul {
   padding: 25px;
   border-radius: 50%;
   overflow: visible;
+  display: block;
 }
 
 .container {
@@ -74,6 +85,8 @@ ul {
   flex-wrap: wrap;
   justify-content: center;
   flex-direction: row;
+  max-width: 100vw; /* Zabrání přesahu mimo viditelnou oblast */
+  overflow: hidden;  /* Skryje přetékající obsah */
 }
 
 .layercontainer {
@@ -141,6 +154,11 @@ ul {
   padding-bottom: 20px;
   font-size: 64px;
   border-radius: 25px;
+  position: sticky;  /* Drží tlačítko ve spodní části */
+  bottom: 10px;  /* Udržuje odstup od spodní části */
+  z-index: 100; /* Zajišťuje, že zůstane nad ostatními prvky */
+  flex-wrap: wrap; /* Přizpůsobí se menším displejům */
+  max-width: 100%;  /* Zabrání přesahu na malých obrazovkách */
 }
 
 .push a {
@@ -157,6 +175,7 @@ ul {
   flex-direction: row;
   width: 100%;
   margin-bottom: 25px;
+  gap: auto;
 }
 
 .key {
@@ -188,4 +207,5 @@ ul {
   padding-bottom: 20px;
   font-size: 40px;
   border-radius: 25px;
+  margin-top: 20px;
 }
