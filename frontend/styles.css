@@ -4,10 +4,14 @@ body {
   font-family: inter-variable, sans-serif;
   font-style: normal;
   font-variation-settings: "slnt" 0, "wght" 400;
+  overflow: hidden;
 }
 
 
-.container, .keypadcontainer, .sidenav, .key {
+.container,
+.keypadcontainer,
+.sidenav,
+.key {
   box-sizing: border-box;
 }
 
@@ -24,7 +28,8 @@ ul {
   overflow: hidden;
   background-color: #EEE;
   width: 100%;
-  min-height: 100vh
+  min-height: 100vh;
+  position: relative;
 }
 
 .sidenav a {
@@ -35,8 +40,10 @@ ul {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  justify-content: center; /* Zarovná ikony na střed */
-  height: 80px; /* Přidej výšku, pokud se ztratily */
+  justify-content: center;
+  /* Zarovná ikony na střed */
+  height: 80px;
+  /* Přidej výšku, pokud se ztratily */
 }
 
 .icon {
@@ -52,6 +59,12 @@ ul {
 .container {
   width: 100%;
   height: 100%;
+  max-width: 100vw;
+  max-height: 100vh;
+}
+
+img {
+  max-width: 100%;
 }
 
 .logo_pozadi {
@@ -85,8 +98,10 @@ ul {
   flex-wrap: wrap;
   justify-content: center;
   flex-direction: row;
-  max-width: 100vw; /* Zabrání přesahu mimo viditelnou oblast */
-  overflow: hidden;  /* Skryje přetékající obsah */
+  max-width: 100vw;
+  /* Zabrání přesahu mimo viditelnou oblast */
+  overflow: hidden;
+  /* Skryje přetékající obsah */
 }
 
 .layercontainer {
@@ -125,7 +140,7 @@ ul {
   border-radius: 50%;
   display: inline-block;
   margin-left: 25px;
-  transition: background-color 0.7s ease-in-out;
+  transition: background-color 0.5s ease-in-out;
   /* Plynulý přechod barvy */
 }
 
@@ -136,7 +151,7 @@ ul {
   border-radius: 50%;
   display: inline-block;
   margin-left: 25px;
-  transition: background-color 0.7s ease-in-out;
+  transition: background-color 0.5s ease-in-out;
   /* Plynulý přechod barvy */
 }
 
@@ -154,11 +169,16 @@ ul {
   padding-bottom: 20px;
   font-size: 64px;
   border-radius: 25px;
-  position: sticky;  /* Drží tlačítko ve spodní části */
-  bottom: 10px;  /* Udržuje odstup od spodní části */
-  z-index: 100; /* Zajišťuje, že zůstane nad ostatními prvky */
-  flex-wrap: wrap; /* Přizpůsobí se menším displejům */
-  max-width: 100%;  /* Zabrání přesahu na malých obrazovkách */
+  position: sticky;
+  /* Drží tlačítko ve spodní části */
+  bottom: 10px;
+  /* Udržuje odstup od spodní části */
+  z-index: 100;
+  /* Zajišťuje, že zůstane nad ostatními prvky */
+  flex-wrap: wrap;
+  /* Přizpůsobí se menším displejům */
+  max-width: 100%;
+  /* Zabrání přesahu na malých obrazovkách */
 }
 
 .push a {
@@ -208,4 +228,20 @@ ul {
   font-size: 40px;
   border-radius: 25px;
   margin-top: 20px;
+}
+
+.function textarea {
+  font-family: inter-variable, sans-serif;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+  padding: 0 5px;
+  /* Snižuje vertikální odsazení */
+  font-size: 40px;
+  text-align: left;
+  align-items: center;
+  vertical-align: middle;
+  /* Může pomoci v některých případech */
+  
 }
