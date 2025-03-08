@@ -30,4 +30,25 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+//Při kliknutí na jakýkoli div s třídou "key"
+document.querySelectorAll('.key').forEach(function(keyDiv) {
+    keyDiv.addEventListener('click', function() {
+        // Získáme číslo klíče (data-key)
+        const keyNumber = keyDiv.getAttribute('data-key');
+        const textarea = document.getElementById('keyFunction');
+
+        // Debugging log pro zajištění, že textarea je správně vybraná
+        if (textarea) {
+            console.log("Změna placeholderu na: Function on key " + keyNumber); // Debugging log
+            // Změníme placeholder na základě čísla divu
+            textarea.placeholder = `Function on key ${keyNumber}`;
+            
+            // Po změně placeholderu přidáme log pro ověření
+            console.log("Aktuální placeholder: ", textarea.placeholder);
+        } else {
+            console.log("Textarea nebyla nalezena!");
+        }
+    });
+});
+
 

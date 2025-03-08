@@ -211,6 +211,8 @@ img {
   gap: 60px;
   text-align: center;
   line-height: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .function {
