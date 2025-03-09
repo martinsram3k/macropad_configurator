@@ -332,3 +332,11 @@ img {
   /* Může pomoci v některých případech */
 
 }
+
+.overeni_ne {
+  display: none;
+}
+
+.overeni_ano {
+  display: absolute;
+}
