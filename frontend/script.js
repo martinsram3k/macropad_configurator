@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let activeIndex = 0;  // Počáteční index aktivní tečky
     let selectedButton = null;  // Pro sledování vybraného tlačítka
+    let currentButton;
 
     function setActiveDot(index) {
         // Odstranit aktivní třídu ze všech teček
@@ -80,23 +81,34 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
  // Odeslání dat na server při kliknutí na tlačítko
-        document.getElementById('pushButton').addEventListener('click', function() {
-            const dataToSend = {
-                button: currentButton,
-                layer: currentLayer,
-                function: currentFunction
-            };
+ document.getElementById('pushButton').addEventListener('click', function() {
+    const textarea = document.getElementById('keyFunction');
+    const text = textarea.value;
 
-            fetch('/receiveData', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(dataToSend)
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log(`Odpověď z serveru: ${JSON.stringify(data)}`);
-            })
-            .catch(error => console.error('Error:', error));
-        });
+    const activeLayer = document.querySelector(".dot_active");
+    const layerNumber = activeLayer.getAttribute("data-key");
+
+    // Zkontroluj, zda jsou proměnné definovány a mají hodnoty
+    if (selectedButton && activeLayer && text) {
+        const dataToSend = {
+            button: selectedButton,
+            layer: layerNumber,
+            function: text
+        };
+
+        fetch('http://localhost:5000/receivedata', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dataToSend)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(`Odpověď z serveru: ${JSON.stringify(data)}`);
+        })
+        .catch(error => console.error('Error:', error));
+    } else {
+        console.error("Chyba: Některé informace nejsou k dispozici.");
+    }
+});
