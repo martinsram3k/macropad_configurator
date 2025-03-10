@@ -7,16 +7,12 @@ body {
   overflow: hidden;
 }
 
-
 .container,
 .keypadcontainer,
 .sidenav,
 .key {
   box-sizing: border-box;
 }
-
-
-
 
 ul {
   list-style-type: none;
@@ -33,59 +29,46 @@ ul {
   z-index: 99999;
   /* Nastav vysokou hodnotu z-index */
   transform: translateZ(0);
-  transition: width 0.3s ease; /* Přidáno */
+  transition: width 0.3s ease;
+  /* Přidáno */
 }
 
 .sidenav a {
   text-align: left;
   /* Změna na levé zarovnání */
-  padding: 8px;
+  padding: 1.2vh;
   text-decoration: none;
   display: block;
-  margin-left: 20px;
-  margin-right: 20px;
+  margin-left: 3vh;
+  margin-right: 3vh;
   justify-content: flex-start;
   /* Změna na flex-start */
   align-items: center;
   /* Vertikální vycentrování */
-  height: 80px;
   display: flex;
   /* Použití flexboxu */
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 4vh;
+  margin-bottom: 4vh;
 }
 
-.icon {
-  width: 35px;
-  color: #EEE;
-  background-color: #2E2E2E;
-  padding: 25px;
-  padding-left: 30px;
-  padding-right: 30px;
-  border-radius: 50%;
-  overflow: visible;
-  display: block;
-  /* Přidání mezery mezi ikonou a textem */
-}
 
 .menu-item {
   display: flex;
   align-items: center;
   background-color: #2E2E2E;
-  border-radius: 25px;
+  border-radius: 6vh;
   text-decoration: none;
   overflow: hidden;
   /* Přidáno */
   color: #EEE;
-  font-size: 200px;
 }
 
 .icon {
-  width: 35px;
+  width: 6vh;
   color: #EEE;
   background-color: transparent;
   /* Odstraněno pozadí */
-  padding: 10px;
+  padding: 2vh;
   border-radius: 0;
   /* Odstraněno zaoblení */
   overflow: visible;
@@ -107,7 +90,7 @@ ul {
 }
 
 .sidenav:hover .menu-item {
-  width: 240px;
+  width: 35vh;
   transition: width 1s ease;
 }
 
@@ -125,9 +108,9 @@ ul {
   align-items: center;
   margin: 0;
   /* Odstraněny marginy */
-  font-size: 20px;
+  font-size: 3vh;
   /* Stejná velikost jako původní text */
-  padding: 0 10px;
+  padding: 0 2vh;
   /* Přidáno odsazení textu */
   border-radius: 0;
   transition: display 0.3s ease;
@@ -147,15 +130,15 @@ img {
 }
 
 .logo_pozadi {
-  width: 600px;
+  width: 35%;
   opacity: 20%;
   padding-left: 40px;
   padding-right: 40px;
   rotate: 0deg;
   z-index: 1;
   position: absolute;
-  left: 145px;
-  top: 10%;
+  left: 20vh;
+  top: 12vh;
 
 }
 
@@ -166,9 +149,10 @@ img {
 }
 
 .foto_pozadi {
+  width: 35%;
   position: absolute;
-  left: 200px;
-  top: 10%;
+  left: 23vh;
+  top: 14vh;
   z-index: 900;
 }
 
@@ -202,15 +186,17 @@ img {
 
 
 .changelayer {
-  font-size: 24px;
-  padding: 15px;
+  font-size: 3.5vh;
+  padding: 2vh;
   background-color: #3F63B5;
-  border-radius: 20px;
+  border-radius: 2.5vh;
   font-weight: bold;
-  margin-right: 25px;
+  margin-right: 5vh;
   position: relative;
+  top: 1.5vh;
   outline: none;
   border: none;
+  margin-bottom: 3vh;
 }
 
 .changelayer:focus {
@@ -219,23 +205,23 @@ img {
 
 
 .dot {
-  height: 45px;
-  width: 45px;
+  height: 7vh;
+  width: 7vh;
   background-color: #C4C4C4;
   border-radius: 50%;
   display: inline-block;
-  margin-left: 25px;
+  margin-left: 4vh;
   transition: background-color 0.5s ease-in-out;
   /* Plynulý přechod barvy */
 }
 
 .dot_active {
   background-color: #2E2E2E;
-  height: 45px;
-  width: 45px;
+  height: 7vh;
+  width: 7vh;
   border-radius: 50%;
   display: inline-block;
-  margin-left: 25px;
+  margin-left: 4vh;
   transition: background-color 0.5s ease-in-out;
   /* Plynulý přechod barvy */
 }
@@ -248,15 +234,15 @@ img {
   height: fit-content;
   width: 100%;
   text-align: center;
-  padding-left: 30px;
-  padding-right: 30px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  font-size: 64px;
-  border-radius: 25px;
+  padding-left: 6vh;
+  padding-right: 6vh;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  font-size: 9vh;
+  border-radius: 5vh;
   position: sticky;
   /* Drží tlačítko ve spodní části */
-  bottom: 10px;
+  bottom: 0.1vh;
   /* Udržuje odstup od spodní části */
   z-index: 100;
   /* Zajišťuje, že zůstane nad ostatními prvky */
@@ -279,21 +265,21 @@ img {
   justify-content: center;
   flex-direction: row;
   width: 100%;
-  margin-bottom: 25px;
-  gap: auto;
+  margin-bottom: 0vh;
+  gap: 2vh;
+  /* Mezery mezi prvky */
 }
 
 .key {
-  font-size: 20px;
-  padding-left: 30px;
-  padding-right: 30px;
-  padding-top: 25px;
-  padding-bottom: 25px;
+  font-size: 2.5vh;
+  padding-left: 5.5vh;
+  padding-right: 5.5vh;
+  padding-top: 3.5vh;
+  padding-bottom: 3.5vh;
   background-color: #C4C4C4;
   color: #3F63B5;
-  border-radius: 20px;
-  margin: 15px;
-  gap: 60px;
+  border-radius: 3vh;
+  gap: 12vh;
   text-align: center;
   line-height: 1.1em;
   cursor: pointer;
@@ -308,13 +294,13 @@ img {
   height: fit-content;
   width: 100%;
   text-align: left;
-  padding-left: 30px;
-  padding-right: 30px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  font-size: 40px;
-  border-radius: 25px;
-  margin-top: 20px;
+  padding-left: 8vh;
+  padding-right: 8vh;
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+  font-size: 10vh;
+  border-radius: 4vh;
+  margin-top: 3vh;
 }
 
 .function textarea {
@@ -323,14 +309,13 @@ img {
   height: 100%;
   background-color: transparent;
   border: none;
-  padding: 0 5px;
+  padding: 0 0.5vh;
   /* Snižuje vertikální odsazení */
-  font-size: 40px;
+  font-size: 5vh;
   text-align: left;
   align-items: center;
   vertical-align: middle;
   /* Může pomoci v některých případech */
-
 }
 
 .overeni_ne {
