@@ -197,6 +197,7 @@ img {
   outline: none;
   border: none;
   margin-bottom: 3vh;
+  cursor: pointer;
 }
 
 .changelayer:focus {
@@ -205,6 +206,7 @@ img {
 
 
 .dot {
+  cursor: pointer;
   height: 7vh;
   width: 7vh;
   background-color: #C4C4C4;
@@ -216,6 +218,7 @@ img {
 }
 
 .dot_active {
+  cursor: pointer;
   background-color: #2E2E2E;
   height: 7vh;
   width: 7vh;
@@ -238,9 +241,10 @@ img {
   padding-right: 6vh;
   padding-top: 2vh;
   padding-bottom: 2vh;
-  font-size: 9vh;
+  font-size: 8vh;
   border-radius: 5vh;
   position: sticky;
+  cursor: pointer;
   /* Drží tlačítko ve spodní části */
   bottom: 0.1vh;
   /* Udržuje odstup od spodní části */
@@ -250,6 +254,7 @@ img {
   /* Přizpůsobí se menším displejům */
   max-width: 100%;
   /* Zabrání přesahu na malých obrazovkách */
+  
 }
 
 .push a {
@@ -324,4 +329,18 @@ img {
 
 .overeni_ano {
   display: absolute;
+  color: #C4C4C4;
+  position: absolute;
+  top: 40%;
+  left: 25%;
+  text-align: center;
+  background-color: #2E2E2E;
+  text-align: center;
+  align-items: center;
+  z-index: 99998;
+  padding: 5vh;
+  border-radius: 3vh;
+  font-size: 7vh;
+  margin-left: auto;
+  margin-right: auto;
 }

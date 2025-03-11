@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             setTimeout(function () {
                                 overeniElement.classList.remove("overeni_ano");
                                 overeniElement.classList.add("overeni_ne"); // Přidá třídu pro skrytí
-                            }, 5000);
+                            }, 3500);
                         }
                     }
                 })
