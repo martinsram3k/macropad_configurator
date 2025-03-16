@@ -74,8 +74,19 @@ This project consists of three main components that work together to create a co
 ## Galerie fotografií
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-right: auto; margin-left:auto;">
-    <img src="gallery/macropad_render_ne_pozadi.png" alt="Popis obrázku 1" style="width: 33%; margin: 10px;">
-    <img src="gallery/macropad_render_workbench.png" alt="Popis obrázku 2" style="width: 33%; margin: 10px;">
-    <img src="gallery/soldering.jpg" alt="Popis obrázku 3" style="width: 33%; margin: 10px;">
+    <img src="gallery/macropad_render_ne_pozadi.png" alt="Popis obrázku 1" style="width: 30%; margin: 10px;">
+    <img src="gallery/macropad_render_workbench.png" alt="Popis obrázku 2" style="width: 30%; margin: 10px;">
+    <img src="gallery/soldering.jpg" alt="Popis obrázku 3" style="width: 30%; margin: 10px;">
 </div>
+
+## Macropad Description
+
+This custom-designed macropad is a versatile tool designed to enhance productivity and streamline workflows. Here's a breakdown of its key features:
+
+* **Microcontroller:** Powered by the robust KB2040 microcontroller, ensuring reliable performance and ample processing power.
+* **Case:** The macropad's enclosure is 3D-printed using durable PLA filament, providing a sturdy and customizable form factor.
+* **PCB:** Features a custom-designed printed circuit board (PCB), meticulously crafted for optimal functionality and efficiency.
+* **Keys:** Equipped with 9 programmable keys, allowing for a wide range of custom functions and macros.
+* **Layer Key:** Includes a dedicated 10th key for seamless layer switching, enabling access to up to 3 distinct layers of programmable functions.
+* **Layers:** The macropad supports 3 programmable layers, effectively tripling the number of available custom functions.
    
