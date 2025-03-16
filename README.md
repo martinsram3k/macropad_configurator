@@ -73,7 +73,7 @@ This project consists of three main components that work together to create a co
 
 ## Galerie fotografií
 
-<div style="display: flex; flex-wrap: wrap;">
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
     <img src="gallery/macropad_render_ne_pozadi.png" alt="Popis obrázku 1" style="width: 30%; margin: 10px;">
     <img src="gallery/macropad_render_workbench.png" alt="Popis obrázku 2" style="width: 30%; margin: 10px;">
     <img src="" alt="Popis obrázku 3" style="width: 30%; margin: 10px;">
