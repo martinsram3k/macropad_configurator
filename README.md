@@ -1,25 +1,43 @@
 # ⚙️ StorageBuddy Macropad Configurator ⌨️
 
-Tento program je vytvořen pro macropad, který vyvíjím. 🛠️
+This program is created for a macropad I am developing. 🛠️
 
-## ⬇️ How to Install 💾
+## ⬇️ How to Install 
+
+###  Windows Installation
 
 1.  **Download the installer:**
-    * Click [here](link_na_vas_exe_soubor) to download the installer (StorageBuddy-Installer.exe). 📥
+    * Click [here](link_na_vas_exe_soubor) to download the installer (StorageBuddy-Installer.exe). 
 2.  **Run the installer:**
-    * Locate the downloaded `StorageBuddy-Installer.exe` file. 📂
-    * Double-click the file to start the installation process. 🖱️
-    * Follow the on-screen instructions to complete the installation. 🖥️
+    * Locate the downloaded `StorageBuddy-Installer.exe` file. 
+    * Double-click the file to start the installation process. ️
+    * Follow the on-screen instructions to complete the installation. ️
 3.  **Connect the Macropad:**
-    * Connect your macropad to your computer using a USB cable. 🔌
+    * Connect your macropad to your computer using a USB cable. 
 4.  **Run the application:**
-    * Once the installation is complete, run the application "StorageBuddy" from your desktop or start menu. 🚀
+    * Once the installation is complete, run the application "StorageBuddy" from your desktop or start menu. 
 5.  **Configure the macropad:**
+    * Open the application and configure the keys to your liking. ⚙️
+
+###  macOS Installation
+
+1.  **Download the application package:**
+    * Click [here](link_na_vas_dmg_soubor) to download the application package (StorageBuddy.dmg). 
+2.  **Mount the DMG file:**
+    * Locate the downloaded `StorageBuddy.dmg` file. 
+    * Double-click the file to mount it. ️
+3.  **Copy the application:**
+    * Drag and drop the "StorageBuddy" application to your "Applications" folder. 
+4.  **Connect the Macropad:**
+    * Connect your macropad to your computer using a USB cable. 
+5.  **Run the application:**
+    * Open the "Applications" folder and double-click "StorageBuddy" to run it. 
+6.  **Configure the macropad:**
     * Open the application and configure the keys to your liking. ⚙️
 
 ## 💻 Git Clone 🐙
 
-1.  Naklonujte repozitár:
+1.  Clone the repository:
     ```bash
     git clone [https://github.com/martinsram3k/macropad_configurator](https://github.com/martinsram3k/macropad_configurator)
     ```
@@ -56,8 +74,8 @@ This project consists of three main components that work together to create a co
     * Uses Flask-CORS to enable Cross-Origin Resource Sharing (CORS), allowing the frontend to communicate with the backend. 🤝
     * Initializes the serial port (COM6) for communication with the macropad. 🔌
     * Defines the `/receivedata` endpoint, which receives POST requests with key configurations from the frontend. 📥
-    * Currently the recived data is not send to the serial port. 🚧
-    * processes the recived data (key number, layer, function) ⚙️
+    * Currently the received data is not sent to the serial port. 🚧
+    * Processes the received data (key number, layer, function) ⚙️
 
 ### 🤖 Firmware (CircuitPython) 💡
 
@@ -85,16 +103,16 @@ This project consists of three main components that work together to create a co
 * Communication between the frontend and backend occurs via HTTP and JSON. 🌐
 * Communication between the backend and macropad occurs via the serial port. 🔌
 * The macropad firmware uses CircuitPython and the `adafruit_hid` library for emulating key presses. 🐍
-* The python backend code, does not yet send the data to the macropad. 🚧
+* The python backend code does not yet send the data to the macropad. 🚧
 
-## 🖼️ Galerie fotografií 📸
+## 🖼️ Photo Gallery 📸
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-right: auto; margin-left:auto;">
-    <img src="gallery/macropad_render_ne_pozadi.png" alt="Popis obrázku 1" style="width: 30%; margin: auto;">
-    <img src="gallery/macropad_render_workbench.png" alt="Popis obrázku 2" style="width: 30%; margin: auto;">
-    <img src="gallery/soldering.jpg" alt="Popis obrázku 3" style="width: 30%; margin: auto;">
-    <img src="gallery/pcb_schematic.png" alt="Popis obrázku 3" style="width: 30%; margin: auto;">
-    <img src="gallery/pcb.png" alt="Popis obrázku 3" style="width: 30%; margin: auto;">
+    <img src="gallery/macropad_render_ne_pozadi.png" alt="Image 1 Description" style="width: 30%; margin: auto;">
+    <img src="gallery/macropad_render_workbench.png" alt="Image 2 Description" style="width: 30%; margin: auto;">
+    <img src="gallery/soldering.jpg" alt="Image 3 Description" style="width: 30%; margin: auto;">
+    <img src="gallery/pcb_schematic.png" alt="Image 4 Description" style="width: 30%; margin: auto;">
+    <img src="gallery/pcb.png" alt="Image 5 Description" style="width: 30%; margin: auto;">
 </div>
 
 ## ⚙️ Macropad Description 🛠️
@@ -126,6 +144,4 @@ Essentially, this macropad is designed for anyone looking to boost productivity 
 If you find this project helpful and would like to support its development, you can do so through the following platforms:
 
 * **Buy Me a Coffee:** [Buy Me a Coffee Link](https://buymeacoffee.com/martin.sram3k) ☕
-* **PayPal.me:** [PayPal.me Link](https://paypal.me/marti842?country.x=CZ&locale.x=cs_CZ) 💰
-
-Your support is greatly appreciated and helps to keep this project alive and growing! 🌱
+* **PayPal.me:**  [PayPal.me Link](https://paypal.me/marti842?country.x=CZ&locale.x=cs_CZ) 💰
