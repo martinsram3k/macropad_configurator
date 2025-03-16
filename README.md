@@ -17,9 +17,9 @@ Tento program je vytvořen pro macropad který vyvíjím
 5.  **Configure the macropad:**
     * Open the application and configure the keys to your liking.
 
-### git clone
+## git clone
 
-6. Naklonujte repozitár:
+1. Naklonujte repozitár:
    ```bash
    git clone https://github.com/martinsram3k/macropad_configurator
 
@@ -118,3 +118,11 @@ This macropad is ideal for professionals and enthusiasts who frequently use comp
 
 Essentially, this macropad is designed for anyone looking to boost productivity and minimize repetitive keystrokes, ultimately leading to a more efficient and enjoyable computing experience.
    
+## Support the Project
+
+If you find this project helpful and would like to support its development, you can do so through the following platforms:
+
+* **Buy Me a Coffee:** [Your Buy Me a Coffee Link](your_buy_me_a_coffee_link)
+* **PayPal.me:** [Your PayPal.me Link](your_paypal_me_link)
+
+Your support is greatly appreciated and helps to keep this project alive and growing!
