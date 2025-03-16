@@ -122,7 +122,7 @@ Essentially, this macropad is designed for anyone looking to boost productivity 
 
 If you find this project helpful and would like to support its development, you can do so through the following platforms:
 
-* **Buy Me a Coffee:** [Your Buy Me a Coffee Link](buymeacoffee.com/martin.sram3k)
-* **PayPal.me:** [Your PayPal.me Link](https://paypal.me/marti842?country.x=CZ&locale.x=cs_CZ)
+* **Buy Me a Coffee:** [Buy Me a Coffee Link](https://buymeacoffee.com/martin.sram3k)
+* **PayPal.me:** [PayPal.me Link](https://paypal.me/marti842?country.x=CZ&locale.x=cs_CZ)
 
 Your support is greatly appreciated and helps to keep this project alive and growing!
