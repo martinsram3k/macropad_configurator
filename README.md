@@ -89,8 +89,8 @@ This custom-designed macropad is a versatile tool designed to enhance productivi
 * **Keys:** Equipped with 9 programmable keys, allowing for a wide range of custom functions and macros.
 * **Layer Key:** Includes a dedicated 10th key for seamless layer switching, enabling access to up to 3 distinct layers of programmable functions.
 * **Layers:** The macropad supports 3 programmable layers, effectively tripling the number of available custom functions.
-   
-   ## Who is this Macropad for?
+* **Multimedia control:** The macropad can be configured to control multimedia functions, such as volume adjustment, play/pause, and stop.
+* **Quick access:** The macropad can be configured to open applications, like calculator.
 
 This macropad is ideal for professionals and enthusiasts who frequently use complex keyboard shortcuts and seek to enhance their workflow efficiency. Specifically, it caters to:
 
@@ -98,5 +98,8 @@ This macropad is ideal for professionals and enthusiasts who frequently use comp
 * **Video Editors:** Accelerate video editing tasks by assigning intricate editing commands to easily accessible keys.
 * **Graphic Designers:** Simplify design workflows with one-touch access to frequently used design software functions.
 * **Anyone needing complex keyboard shortcuts:** In general, anyone who wants to speed up computer work.
+* **People who want to control multimedia:** Easy multimedia control.
+* **People who want to have quick access to applications:** Quick access to applications like calculator.
 
 Essentially, this macropad is designed for anyone looking to boost productivity and minimize repetitive keystrokes, ultimately leading to a more efficient and enjoyable computing experience.
+   
