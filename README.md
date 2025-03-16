@@ -4,7 +4,22 @@ Tento program je vytvořen pro macropad který vyvíjím
 
 ## How to install
 
-1. Naklonujte repozitár:
+1.  **Download the installer:**
+    * Click [here](link_na_vas_exe_soubor) to download the installer (StorageBuddy-Installer.exe).
+2.  **Run the installer:**
+    * Locate the downloaded `StorageBuddy-Installer.exe` file.
+    * Double-click the file to start the installation process.
+    * Follow the on-screen instructions to complete the installation.
+3.  **Connect the Macropad:**
+    * Connect your macropad to your computer using a USB cable.
+4.  **Run the application:**
+    * Once the installation is complete, run the application "StorageBuddy" from your desktop or start menu.
+5.  **Configure the macropad:**
+    * Open the application and configure the keys to your liking.
+
+# git clone
+
+6. Naklonujte repozitár:
    ```bash
    git clone https://github.com/martinsram3k/macropad_configurator
 
