@@ -1,9 +1,9 @@
-# Názov projektu
+# StorageBuddy macropad configurator
 
-Stručný popis projektu.
+Tento program je vytvořen pro macropad který vyvíjím 
 
-## Inštalácia
+## How to install
 
 1. Naklonujte repozitár:
    ```bash
-   git clone <URL repozitára>
+   git clone https://github.com/martinsram3k/macropad_configurator
