@@ -17,7 +17,7 @@ Tento program je vytvořen pro macropad který vyvíjím
 5.  **Configure the macropad:**
     * Open the application and configure the keys to your liking.
 
-# git clone
+### git clone
 
 6. Naklonujte repozitár:
    ```bash
