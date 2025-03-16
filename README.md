@@ -70,4 +70,12 @@ This project consists of three main components that work together to create a co
 * Communication between the backend and macropad occurs via the serial port.
 * The macropad firmware uses CircuitPython and the `adafruit_hid` library for emulating key presses.
 * The python backend code, does not yet send the data to the macropad.
+
+## Galerie fotografií
+
+<div style="display: flex; flex-wrap: wrap;">
+    <img src="gallery/macropad_render_ne_pozadi.png" alt="Popis obrázku 1" style="width: 30%; margin: 10px;">
+    <img src="gallery/macropad_render_workbench.png" alt="Popis obrázku 2" style="width: 30%; margin: 10px;">
+    <img src="" alt="Popis obrázku 3" style="width: 30%; margin: 10px;">
+</div>
    
