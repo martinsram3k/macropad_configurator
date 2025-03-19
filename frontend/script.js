@@ -67,6 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     if (data.message === "Data byla úspěšně přijata.") {
                         if (overeniElement) {
                             overeniElement.textContent = "Data byla přijata správně";
+                            overeniElement.img = "photo/macropad_render_ne_pozadi.png";
                             overeniElement.classList.remove("overeni_ne");
                             overeniElement.classList.add("overeni_ano");
 
@@ -81,9 +82,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 .catch(error => {
                     console.error('Error:', error);
                     if (overeniElement) {
+                        overeniElement.img = "photo/macropad_render_ne_pozadi.png";
                         overeniElement.textContent = "Chyba při odesílání dat";
                         overeniElement.classList.remove("overeni_ne");
-                        overeniElement.classList.add("overeni_chyba");
+                        overeniElement.classList.add("overeni_ano");
+
+
+                        setTimeout(function () {
+                            overeniElement.classList.remove("overeni_ano");
+                            overeniElement.classList.add("overeni_ne"); // Přidá třídu pro skrytí
+                        }, 3500);
                     }
                 });
         } else {
