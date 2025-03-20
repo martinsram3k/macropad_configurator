@@ -4,6 +4,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const buttons = document.querySelectorAll(".key");
     const textarea = document.getElementById('keyFunction');
     const overeniElement = document.querySelector('h1.overeni_ne');
+    const pushButton = document.getElementById('pushButton');
+
+    // Přidáno pro informační okno
+    const menuItems = document.querySelectorAll('.menu-item');
+    const infoWindow = document.getElementById('infoWindow');
+    const infoContent = document.getElementById('infoContent');
 
     let activeIndex = 0;
     let selectedButton = null;
@@ -39,10 +45,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.log("Textarea nebyla nalezena!");
             }
             selectedButton = keyNumber;
+            // Přidání vizuální zpětné vazby pro vybrané tlačítko
+            buttons.forEach(btn => btn.classList.remove('selected'));
+            keyDiv.classList.add('selected');
         });
     });
 
-    document.getElementById('pushButton').addEventListener('click', function () {
+    async function sendDataToServer() {
         const text = textarea.value;
         const activeLayer = document.querySelector(".dot_active");
         const layerNumber = activeLayer.getAttribute("data-key");
@@ -54,48 +63,67 @@ document.addEventListener("DOMContentLoaded", function () {
                 function: text
             };
 
-            fetch('http://localhost:5000/receivedata', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(dataToSend)
-            })
-                .then(response => response.json())
-                .then(data => {
-                    console.log(`Odpověď z serveru: ${JSON.stringify(data)}`);
-                    if (data.message === "Data byla úspěšně přijata.") {
-                        if (overeniElement) {
-                            overeniElement.textContent = "Data byla přijata správně";
-                            overeniElement.img = "photo/macropad_render_ne_pozadi.png";
-                            overeniElement.classList.remove("overeni_ne");
-                            overeniElement.classList.add("overeni_ano");
-
-                            // Skryje h1 element po 5 sekundách
-                            setTimeout(function () {
-                                overeniElement.classList.remove("overeni_ano");
-                                overeniElement.classList.add("overeni_ne"); // Přidá třídu pro skrytí
-                            }, 3500);
-                        }
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    if (overeniElement) {
-                        overeniElement.img = "photo/macropad_render_ne_pozadi.png";
-                        overeniElement.textContent = "Chyba při odesílání dat";
-                        overeniElement.classList.remove("overeni_ne");
-                        overeniElement.classList.add("overeni_ano");
-
-
-                        setTimeout(function () {
-                            overeniElement.classList.remove("overeni_ano");
-                            overeniElement.classList.add("overeni_ne"); // Přidá třídu pro skrytí
-                        }, 3500);
-                    }
+            try {
+                pushButton.disabled = true; // Deaktivace tlačítka
+                const response = await fetch('http://localhost:5000/receivedata', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(dataToSend)
                 });
+
+                const data = await response.json();
+                console.log(`Odpověď z serveru: ${JSON.stringify(data)}`);
+
+                if (data.message === "Data byla úspěšně přijata.") {
+                    showSuccessMessage("Data byla přijata správně");
+                } else {
+                    showErrorMessage("Chyba při odesílání dat");
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showErrorMessage("Chyba při odesílání dat");
+            } finally {
+                pushButton.disabled = false; // Aktivace tlačítka
+            }
         } else {
             console.error("Chyba: Některé informace nejsou k dispozici.");
         }
+    }
+
+    function showSuccessMessage(message) {
+        overeniElement.textContent = message;
+        overeniElement.classList.remove("overeni_ne");
+        overeniElement.classList.add("overeni_ano");
+        setTimeout(() => {
+            overeniElement.classList.remove("overeni_ano");
+            overeniElement.classList.add("overeni_ne");
+        }, 3500);
+    }
+
+    function showErrorMessage(message) {
+        overeniElement.textContent = message;
+        overeniElement.classList.remove("overeni_ne");
+        overeniElement.classList.add("overeni_ano");
+        setTimeout(() => {
+            overeniElement.classList.remove("overeni_ano");
+            overeniElement.classList.add("overeni_ne");
+        }, 3500);
+    }
+
+    pushButton.addEventListener('click', sendDataToServer);
+
+    // Přidáno pro informační okno
+    menuItems.forEach(item => {
+        item.addEventListener('mouseenter', function () {
+            const info = this.getAttribute('data-info');
+            infoContent.textContent = info;
+            infoWindow.style.display = 'block';
+        });
+
+        item.addEventListener('mouseleave', function () {
+            infoWindow.style.display = 'none';
+        });
     });
 });
