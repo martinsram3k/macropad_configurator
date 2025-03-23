@@ -127,3 +127,75 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const sidenav = document.querySelector('.sidenav');
+    let activeSubmenu = null;
+
+    sidenav.addEventListener('click', function (event) {
+        let target = event.target;
+
+        // Pokud je cíl události uvnitř <li>, nastavíme target na <li>
+        if (target.closest('li')) {
+            target = target.closest('li');
+        }
+
+        if (target.tagName === 'LI') { // Kontrola, zda je cíl <li>
+            const submenu = target.querySelector('.submenu');
+
+            // Skrytí všech ostatních submenu
+            document.querySelectorAll('.submenu').forEach(item => {
+                if (item !== submenu) {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Zobrazení submenu pro kliknuté <li>
+            submenu.style.display = 'block';
+            activeSubmenu = submenu; // Uložení aktivního submenu
+        }
+    });
+
+    document.addEventListener('click', function (event) {
+        if (activeSubmenu && !event.target.closest('.submenu') && !event.target.closest('li')) {
+            activeSubmenu.style.display = 'none';
+            activeSubmenu = null;
+        }
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const sidenav = document.querySelector('.sidenav');
+    let activeSubmenu = null;
+
+    sidenav.addEventListener('click', function (event) {
+        let target = event.target;
+
+        if (target.closest('li')) {
+            target = target.closest('li');
+        }
+
+        if (target.tagName === 'LI') {
+            const submenu = target.querySelector('.submenu');
+
+            document.querySelectorAll('.submenu').forEach(item => {
+                if (item !== submenu) {
+                    item.style.display = 'none';
+                }
+            });
+
+            submenu.style.display = 'block';
+            activeSubmenu = submenu;
+
+            // Dynamické nastavení šířky submenu
+            submenu.style.width = '200px'; // Nebo jiná požadovaná šířka
+        }
+    });
+
+    document.addEventListener('click', function (event) {
+        if (activeSubmenu && !event.target.closest('.submenu') && !event.target.closest('li')) {
+            activeSubmenu.style.display = 'none';
+            activeSubmenu = null;
+        }
+    });
+});

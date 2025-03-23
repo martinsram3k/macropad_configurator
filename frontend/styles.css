@@ -10,7 +10,8 @@ body {
 .container,
 .keypadcontainer,
 .sidenav,
-.key {
+.key
+.submenu {
   box-sizing: border-box;
 }
 
@@ -33,7 +34,7 @@ ul {
   /* Přidáno */
 }
 
-.sidenav a {
+.sidenav button {
   text-align: left;
   /* Změna na levé zarovnání */
   padding: 1.2vh;
@@ -49,6 +50,13 @@ ul {
   /* Použití flexboxu */
   margin-top: 4vh;
   margin-bottom: 4vh;
+  border: none;
+  outline: none;
+}
+
+button:focus {
+  outline: none;
+  border: none;
 }
 
 
@@ -75,6 +83,23 @@ ul {
   display: block;
 }
 
+.submenu {
+  min-height: 100vh;
+  display: none; /* Změna na block, aby bylo submenu viditelné */
+  position: absolute;
+  background-color: #EEE;
+  width: fit-content; /* Nastavte požadovanou šířku */
+  height: 100vh; /* Nastavte požadovanou výšku */
+  top: 0;
+  color: #2E2E2E;
+  z-index: 99999;
+  visibility: visible;
+  opacity: 1;
+  overflow: visible;
+  transform: translateX(150%);
+  border: 1px solid black; /* Přidání ohraničení pro lepší viditelnost */
+}
+
 .menu-text {
   display: none;
   width: fit-content;
@@ -88,6 +113,7 @@ ul {
   /* Odstraněno padding */
   text-align: center;
 }
+
 
 .sidenav:hover .menu-item {
   width: 35vh;
