@@ -18,6 +18,7 @@ serial_thread = None  # Proměnná pro uložení vlákna
 
 def init_serial():
     global ser
+    retry_count = 0  # Počítadlo opakování
     while ser is None:  # Opakuj, dokud se nepodaří připojit
         try:
             ser = serial.Serial(serial_port, baud_rate)
@@ -25,10 +26,15 @@ def init_serial():
             if ser.is_open:
                 logging.info(f"Sériový port {serial_port} je otevřen")  # Logovani otevreni portu
             start_serial_listener()  # Spuštění naslouchání dat ze sériového portu
+            logging.info(f"Sériový port {serial_port} úspěšně otevřen po {retry_count} pokusech.")
         except serial.SerialException as e:
             logging.error(f"Chyba při inicializaci sériového portu {serial_port}: {e}")
             logging.info("Pokus o opakované připojení za 10 sekund...")
             time.sleep(10)  # Počkej 10 sekund před dalším pokusem
+            retry_count += 1
+            if retry_count > 10: # Pokud se port nepodaří otevřít po 10 pokusech, ukončíme aplikaci.
+                logging.error(f"Sériový port {serial_port} se nepodařilo otevřít ani po 10 pokusech. Ukončuji aplikaci.")
+                exit(1)
 
 def start_serial_listener():
     global serial_thread
@@ -45,6 +51,8 @@ def start_serial_listener():
             except Exception as e:
                 logging.error(f"Chyba při čtení ze sériového portu: {e}")
                 break  # Ukončení naslouchání při chybě
+        if ser and not ser.is_open:
+            logging.error(f"Sériový port {serial_port} byl uzavřen.")
         logging.debug("Vlákno pro naslouchání sériového portu ukončeno")  # Logovani ukonceni vlakna
 
     serial_thread = threading.Thread(target=listen, daemon=True)
