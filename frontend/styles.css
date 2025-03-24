@@ -10,37 +10,47 @@ body {
 .container,
 .keypadcontainer,
 .sidenav,
-.key
-.submenu {
+.key .submenu {
   box-sizing: border-box;
+  width: fit-content;
 }
 
 nav {
   width: fit-content;
+  overflow: visible;
+  min-width: fit-content;
 }
 
 .menucontainer {
   display: flex;
-  overflow: visible;  
+  overflow: visible;
+  width: fit-content;
+  min-width: fit-content;
 }
 
 ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
+  width: fit-content;
+}
+
+ul li {
+  width: fit-content;
+  min-width: fit-content;
+  overflow: visible;
 }
 
 .sidenav {
-  overflow: hidden;
+  overflow: visible;
   background-color: #EEE;
   width: fit-content;
   min-height: 100vh;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   z-index: 99999;
   /* Nastav vysokou hodnotu z-index */
-  transform: translateZ(0);
-  transition: width 0.3s ease;
-  /* Přidáno */
 }
 
 .sidenav button {
@@ -48,7 +58,7 @@ ul {
   /* Změna na levé zarovnání */
   padding: 1.2vh;
   text-decoration: none;
-  display: block;
+  display: inline;
   margin-left: 3vh;
   margin-right: 3vh;
   justify-content: flex-start;
@@ -61,6 +71,7 @@ ul {
   margin-bottom: 4vh;
   border: none;
   outline: none;
+  width: fit-content;
 }
 
 button:focus {
@@ -71,6 +82,7 @@ button:focus {
 
 .menu-item {
   display: flex;
+  width: fit-content;
   align-items: center;
   background-color: #2E2E2E;
   border-radius: 6vh;
@@ -94,20 +106,25 @@ button:focus {
 
 .submenu {
   min-height: 100vh;
-  display: none; /* Změna na block, aby bylo submenu viditelné */
+  display: none;
+  /* Změna na block, aby bylo submenu viditelné */
   position: absolute;
-  background-color: #EEE;
-  width: fit-content; /* Nastavte požadovanou šířku */
-  height: 100vh; /* Nastavte požadovanou výšku */
   top: 0;
+  right: 0;
+  background-color: #EEE;
+  /* Nastavte požadovanou šířku */
+  height: 100vh;
+  /* Nastavte požadovanou výšku */
   color: #2E2E2E;
-  z-index: 999999;
+  z-index: 9999999999;
   visibility: visible;
   opacity: 1;
+  width: fit-content;
+  padding: 1vh;
   overflow: visible;
-  transform: translateX(150%);
-  margin-left: 50px;
-  border: 1px solid black; /* Přidání ohraničení pro lepší viditelnost */
+  border: 1px solid black;
+  transform: translateX(0);
+  /* Přidání ohraničení pro lepší viditelnost */
 }
 
 
@@ -135,7 +152,7 @@ button:focus {
   display: block;
   width: fit-content;
   text-align: center;
-  width: auto;
+  width: fit-content;
   /* Automatická šířka */
   background-color: transparent;
   /* Odstraněno pozadí */
@@ -160,6 +177,9 @@ button:focus {
   max-height: 100vh;
   z-index: 800;
   position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: relative;
 }
 
 img {
@@ -177,12 +197,6 @@ img {
   left: 20vh;
   top: 12vh;
 
-}
-
-.container {
-  display: flex;
-  flex-direction: row;
-  justify-content: relative;
 }
 
 .foto_pozadi {
@@ -291,7 +305,7 @@ img {
   /* Přizpůsobí se menším displejům */
   max-width: 100%;
   /* Zabrání přesahu na malých obrazovkách */
-  
+
 }
 
 .push a {
@@ -384,4 +398,3 @@ img {
 }
 
 /* ... (ostatní CSS styly) ... */
-

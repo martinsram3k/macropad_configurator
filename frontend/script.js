@@ -188,7 +188,7 @@ document.addEventListener("DOMContentLoaded", function () {
             activeSubmenu = submenu;
 
             // Dynamické nastavení šířky submenu
-            submenu.style.width = '200px'; // Nebo jiná požadovaná šířka
+            submenu.style.width = 'fit-content'; // Nebo jiná požadovaná šířka
         }
     });
 
