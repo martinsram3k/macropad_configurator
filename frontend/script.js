@@ -189,6 +189,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Dynamické nastavení šířky submenu
             submenu.style.width = 'fit-content'; // Nebo jiná požadovaná šířka
+            sidenav.style.width = '105vh'; // Nebo jiná požadovaná š
+        }
+    });
+
+    // Nový listener pro skrytí submenu při odjezdu myši z sidenav
+    sidenav.addEventListener('mouseleave', function () {
+        if (activeSubmenu) {
+            activeSubmenu.style.display = 'none';
+            activeSubmenu = null;
+            sidenav.style.width = 'fit-content'; // Nastavení původní šířky
         }
     });
 
@@ -196,6 +206,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (activeSubmenu && !event.target.closest('.submenu') && !event.target.closest('li')) {
             activeSubmenu.style.display = 'none';
             activeSubmenu = null;
+            sidenav.style.width = 'fit-content'; // Nastavení původní šířky
         }
     });
 });
+
