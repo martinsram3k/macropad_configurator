@@ -15,6 +15,15 @@ body {
   box-sizing: border-box;
 }
 
+nav {
+  width: fit-content;
+}
+
+.menucontainer {
+  display: flex;
+  overflow: visible;  
+}
+
 ul {
   list-style-type: none;
   margin: 0;
@@ -92,13 +101,15 @@ button:focus {
   height: 100vh; /* Nastavte požadovanou výšku */
   top: 0;
   color: #2E2E2E;
-  z-index: 99999;
+  z-index: 999999;
   visibility: visible;
   opacity: 1;
   overflow: visible;
   transform: translateX(150%);
+  margin-left: 50px;
   border: 1px solid black; /* Přidání ohraničení pro lepší viditelnost */
 }
+
 
 .menu-text {
   display: none;
