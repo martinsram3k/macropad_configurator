@@ -301,6 +301,9 @@ document.addEventListener("DOMContentLoaded", function () {
 const serverStatusItem = document.querySelector('.menu-item[data-key="server_status"]');
 let serverStatusIcon = serverStatusItem ? serverStatusItem.querySelector('img') : null;
 let serverStatusText = serverStatusItem ? serverStatusItem.querySelector('.menu-text') : null;
+const pushButton = document.getElementById('pushButton');
+
+
 
 // Funkce pro aktualizaci stavu serveru z backendu
 async function updateServerStatusFromBackend() {
@@ -337,16 +340,21 @@ async function updateServerStatusFromBackend() {
                     isOnline = false;
                     break;
             }
-            if (data.status !== 'offline') { // Aktualizovat stav, pokud není "offline" (již zpracováno výše)
+            if (data.status !== 'offline') {
                 updateServerStatus(isOnline, statusText);
+                updatePushButtonState(isOnline); // Aktualizovat stav tlačítka
+            } else {
+                updatePushButtonState(false); // Nastavit tlačítko na offline
             }
         } else {
             updateServerStatus(false, 'Error');
+            updatePushButtonState(false); // Nastavit tlačítko na offline při chybě
             console.warn('Neplatná odpověď z /status endpointu:', data);
         }
     } catch (error) {
         console.error('Chyba při dotazu na stav serveru:', error);
         updateServerStatus(false, 'Error');
+        updatePushButtonState(false); // Nastavit tlačítko na offline při chybě
     }
 }
 
@@ -354,7 +362,7 @@ async function updateServerStatusFromBackend() {
 function updateServerStatus(isOnline, statusText) {
     if (serverStatusItem && serverStatusIcon && serverStatusText) {
         if (statusText === 'Loading') {
-            serverStatusIcon.src = 'icon/loading_server.svg'; // Vytvořte si ikonu pro loading
+            serverStatusIcon.src = 'icon/loading_server.svg';
             serverStatusText.textContent = 'Server Loading';
             serverStatusItem.title = 'Server se načítá';
             serverStatusItem.classList.remove('server-online', 'server-offline');
@@ -375,8 +383,27 @@ function updateServerStatus(isOnline, statusText) {
     }
 }
 
+// Funkce pro aktualizaci stavu tlačítka Push
+function updatePushButtonState(isServerOnline) {
+    if (pushButton) {
+        if (isServerOnline) {
+            pushButton.disabled = false;
+            pushButton.classList.remove('fade-out'); // Odebrat třídu pro fade-out
+            pushButton.classList.add('fade-in');    // Přidat třídu pro fade-in
+            pushButton.style.cursor = 'pointer';
+        } else {
+            pushButton.disabled = true;
+            pushButton.classList.remove('fade-in');     // Odebrat třídu pro fade-in
+            pushButton.classList.add('fade-out');    // Přidat třídu pro fade-out
+            pushButton.style.cursor = 'not-allowed';
+        }
+    }
+}
+
+
 // Volání funkce pro aktualizaci stavu serveru při načtení stránky
 updateServerStatusFromBackend();
+updatePushButtonState(false); // Nastavit počáteční stav tlačítka na offline
 
-// Nastavení intervalu pro periodickou aktualizaci stavu (např. každé 2 sekundy)
-setInterval(updateServerStatusFromBackend, 2000);
+// Nastavení intervalu pro periodickou aktualizaci stavu (např. každé 3 sekundy)
+setInterval(updateServerStatusFromBackend, 3000);

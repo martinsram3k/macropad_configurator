@@ -325,6 +325,16 @@ img {
   /* Plynulý přechod barvy */
 }
 
+.fade-out {
+  opacity: 0.5;
+  transition: opacity 0.5s ease-in-out; /* Nebo vámi preferovaná doba a funkce */
+}
+
+.fade-in {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out; /* Stejná doba a funkce */
+}
+
 .push {
   margin-left: auto;
   margin-right: auto;
@@ -351,6 +361,16 @@ img {
   max-width: 100%;
   /* Zabrání přesahu na malých obrazovkách */
 
+}
+
+.push.fade-out {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.push.fade-in {
+  opacity: 1;
+  cursor: pointer;
 }
 
 .push a {
