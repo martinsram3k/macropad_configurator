@@ -297,46 +297,86 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-async function checkServerStatus() {
-    console.log("Kontrola stavu servera - začiatok.");
-    console.log("serverStatusItem:", serverStatusItem);
-    console.log("serverStatusIcon:", serverStatusIcon);
-    console.log("serverStatusText:", serverStatusText);
+// Element pro stav serveru
+const serverStatusItem = document.querySelector('.menu-item[data-key="server_status"]');
+let serverStatusIcon = serverStatusItem ? serverStatusItem.querySelector('img') : null;
+let serverStatusText = serverStatusItem ? serverStatusItem.querySelector('.menu-text') : null;
+
+// Funkce pro aktualizaci stavu serveru z backendu
+async function updateServerStatusFromBackend() {
     try {
         const response = await fetch('http://localhost:5000/status');
-        console.log("Odpoveď na fetch:", response);
         if (!response.ok) {
             console.error(`Chyba HTTP: ${response.status}`);
-            updateServerStatus('offline');
+            updateServerStatus(false, 'Error');
             return;
         }
         const data = await response.json();
-        console.log("Dáta z /status:", data);
-        updateServerStatus(data.status);
+        if (data && data.status) {
+            let statusText = '';
+            let isOnline = false;
+            switch (data.status) {
+                case 'loading':
+                    statusText = 'Loading';
+                    break;
+                case 'online':
+                    statusText = 'Online';
+                    isOnline = true;
+                    break;
+                case 'offline':
+                    statusText = 'Loading'; // Změna: Při stavu "offline" zobrazit "Loading"
+                    // Nastavíme stav na "loading" a pak se server vypne
+                    updateServerStatus(false, statusText);
+                    await new Promise(resolve => setTimeout(resolve, 3000)); // Pauza 3 sekundy
+                    statusText = 'Offline'; // Po pauze nastavíme na "Offline"
+                    updateServerStatus(false, statusText);
+                    isOnline = false;
+                    break;
+                default:
+                    statusText = 'Unknown';
+                    isOnline = false;
+                    break;
+            }
+            if (data.status !== 'offline') { // Aktualizovat stav, pokud není "offline" (již zpracováno výše)
+                updateServerStatus(isOnline, statusText);
+            }
+        } else {
+            updateServerStatus(false, 'Error');
+            console.warn('Neplatná odpověď z /status endpointu:', data);
+        }
     } catch (error) {
-        console.error('Chyba pri kontrole stavu serveru:', error);
-        console.log('Typ chyby:', error.name);
-        updateServerStatus('offline');
-    } finally {
-        console.log("Plánujem ďalšiu kontrolu o 5 sekúnd.");
-        setTimeout(checkServerStatus, 5000);
+        console.error('Chyba při dotazu na stav serveru:', error);
+        updateServerStatus(false, 'Error');
     }
 }
 
-function updateServerStatus(status) {
-    if (status === 'online') {
-        serverStatusIcon.src = 'icon/online_server.svg';
-        serverStatusText.textContent = 'Server Online';
-        serverStatusItem.title = 'Server je online';
-    } else if (status === 'offline') {
-        serverStatusIcon.src = 'icon/offline_server.svg';
-        serverStatusText.textContent = 'Server Offline';
-        serverStatusItem.title = 'Server je offline';
-    } else if (status === 'shutting_down') {
-        serverStatusIcon.src = 'icon/loading_server.svg';
-        serverStatusText.textContent = 'Server se vypíná...';
-        serverStatusItem.title = 'Server se vypíná';
-    } else {
-        console.error('Neznámý stav serveru:', status);
+// Funkce pro aktualizaci zobrazení stavu serveru v HTML
+function updateServerStatus(isOnline, statusText) {
+    if (serverStatusItem && serverStatusIcon && serverStatusText) {
+        if (statusText === 'Loading') {
+            serverStatusIcon.src = 'icon/loading_server.svg'; // Vytvořte si ikonu pro loading
+            serverStatusText.textContent = 'Server Loading';
+            serverStatusItem.title = 'Server se načítá';
+            serverStatusItem.classList.remove('server-online', 'server-offline');
+            serverStatusItem.classList.add('server-loading');
+        } else if (isOnline) {
+            serverStatusIcon.src = 'icon/online_server.svg';
+            serverStatusText.textContent = 'Server Online';
+            serverStatusItem.title = 'Server je online';
+            serverStatusItem.classList.remove('server-loading', 'server-offline');
+            serverStatusItem.classList.add('server-online');
+        } else {
+            serverStatusIcon.src = 'icon/offline_server.svg';
+            serverStatusText.textContent = 'Server Offline';
+            serverStatusItem.title = 'Server je offline';
+            serverStatusItem.classList.remove('server-loading', 'server-online');
+            serverStatusItem.classList.add('server-offline');
+        }
     }
 }
+
+// Volání funkce pro aktualizaci stavu serveru při načtení stránky
+updateServerStatusFromBackend();
+
+// Nastavení intervalu pro periodickou aktualizaci stavu (např. každé 2 sekundy)
+setInterval(updateServerStatusFromBackend, 2000);
