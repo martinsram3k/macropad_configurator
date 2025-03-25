@@ -41,6 +41,11 @@ ul li {
   overflow: visible;
 }
 
+.bottom {
+  position: absolute;
+  bottom: 0;
+}
+
 .sidenav {
   overflow: visible;
   background-color: #EEE;
@@ -368,10 +373,10 @@ img {
 
 .key {
   font-size: 2.5vh;
-  padding-left: 5.5vh;
-  padding-right: 5.5vh;
-  padding-top: 3.5vh;
-  padding-bottom: 3.5vh;
+  padding-left: 6vh;
+  padding-right: 6vh;
+  padding-top: 4vh;
+  padding-bottom: 4vh;
   background-color: #C4C4C4;
   color: #3F63B5;
   border-radius: 3vh;
@@ -379,7 +384,7 @@ img {
   text-align: center;
   line-height: 1.1em;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease-in-out;
 }
 
 .key:hover {
@@ -400,7 +405,6 @@ img {
   padding-bottom: 3vh;
   font-size: 10vh;
   border-radius: 4vh;
-  margin-top: 3vh;
 }
 
 .function textarea {
