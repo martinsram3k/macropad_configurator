@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const dots = document.querySelectorAll(".dot, .dot_active");
     const buttons = document.querySelectorAll(".key");
     const textarea = document.getElementById('keyFunction');
+    const clearButton = document.querySelector('.clear-button');
     const overeniElement = document.querySelector('h1.overeni_ne');
     const pushButton = document.getElementById('pushButton');
 
@@ -10,6 +11,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const menuItems = document.querySelectorAll('.menu-item');
     const infoWindow = document.getElementById('infoWindow');
     const infoContent = document.getElementById('infoContent');
+
+    // Nově přidané pro zpracování kliknutí na submenu položky
+    const submenuItems = document.querySelectorAll('.submenu a'); // Změna výběru na 'a' tagy
 
     let activeIndex = 0;
     let selectedButton = null;
@@ -35,21 +39,51 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
+    // Původní listener pro tlačítka v keypadu (nyní upravený)
     buttons.forEach(function (keyDiv) {
         keyDiv.addEventListener('click', function () {
             const keyNumber = keyDiv.getAttribute('data-key');
             console.log(`Tlačítko${keyNumber} bylo vybráno.`);
             if (textarea) {
-                textarea.placeholder = `Function on key ${keyNumber}`;
+                textarea.placeholder = `Function on key  ${keyNumber} `;
+                selectedButton = keyNumber;
+                buttons.forEach(btn => btn.classList.remove('selected'));
+                keyDiv.classList.add('selected');
             } else {
                 console.log("Textarea nebyla nalezena!");
             }
-            selectedButton = keyNumber;
-            // Přidání vizuální zpětné vazby pro vybrané tlačítko
-            buttons.forEach(btn => btn.classList.remove('selected'));
-            keyDiv.classList.add('selected');
         });
     });
+
+    // Přidání listeneru pro kliknutí na položky v submenu
+    submenuItems.forEach(function (submenuLink) { // Změna 'submenuItem' na 'submenuLink'
+        submenuLink.addEventListener('click', function (event) {
+            event.preventDefault(); // Zabraňuje standardnímu chování odkazu (pokud by tam byl)
+            const keyFunctionDiv = this.querySelector('div[data-key]');
+            if (keyFunctionDiv) {
+                const keyFunctionValue = keyFunctionDiv.getAttribute('data-key');
+                if (textarea) {
+                    textarea.value = keyFunctionValue;
+                    console.log(`Nastavena funkce: ${keyFunctionValue}`);
+                } else {
+                    console.log("Textarea nebyla nalezena!");
+                }
+            }
+        });
+    });
+
+    // Listener pro kliknutí na tlačítko pro vymazání
+    if (clearButton) {
+        clearButton.addEventListener('click', function () {
+            if (textarea) {
+                textarea.value = ''; // Vymazání obsahu textarea
+                // textarea.placeholder = 'Function on key  X '; // Resetování placeholderu
+                console.log("Obsah textarea vymazán.");
+            }
+        });
+    } else {
+        console.log("Tlačítko pro vymazání nebylo nalezeno.");
+    }
 
     async function sendDataToServer() {
         const text = textarea.value;
@@ -210,4 +244,3 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
-
