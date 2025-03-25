@@ -18,6 +18,11 @@ document.addEventListener("DOMContentLoaded", function () {
     let activeIndex = 0;
     let selectedButton = null;
 
+    // Element pro stav serveru
+    const serverStatusItem = document.querySelector('.menu-item[data-key="server_status"]');
+    let serverStatusIcon = serverStatusItem ? serverStatusItem.querySelector('img') : null;
+    let serverStatusText = serverStatusItem ? serverStatusItem.querySelector('.menu-text') : null;
+
     function setActiveDot(index) {
         dots.forEach(dot => dot.classList.remove("dot_active"));
         dots.forEach(dot => dot.classList.add("dot"));
@@ -77,8 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
         clearButton.addEventListener('click', function () {
             if (textarea) {
                 textarea.value = ''; // Vymazání obsahu textarea
-                // textarea.placeholder = 'Function on key  X '; // Resetování placeholderu
-                console.log("Obsah textarea vymazán.");
+                console.log("Obsah textarea vymazán, placeholder zůstal.");
             }
         });
     } else {
@@ -110,8 +114,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 const data = await response.json();
                 console.log(`Odpověď z serveru: ${JSON.stringify(data)}`);
 
-                if (data.message === "Data byla úspěšně přijata.") {
+                if (data.status === "success" && data.message === "Data received and sent to serial port") {
                     showSuccessMessage("Data byla přijata správně");
+                } else if (data.status === "info" && data.message === "Serial port functionality is currently disabled.") {
+                    showInfoMessage("Funkce sériového portu deaktivovány");
                 } else {
                     showErrorMessage("Chyba při odesílání dat");
                 }
@@ -136,6 +142,16 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 3500);
     }
 
+    function showInfoMessage(message) {
+        overeniElement.textContent = message;
+        overeniElement.classList.remove("overeni_ne");
+        overeniElement.classList.add("overeni_info");
+        setTimeout(() => {
+            overeniElement.classList.remove("overeni_info");
+            overeniElement.classList.add("overeni_ne");
+        }, 3500);
+    }
+
     function showErrorMessage(message) {
         overeniElement.textContent = message;
         overeniElement.classList.remove("overeni_ne");
@@ -147,6 +163,42 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     pushButton.addEventListener('click', sendDataToServer);
+
+    // Funkce pro aktualizaci stavu serveru
+    function updateServerStatus(isOnline) {
+        if (serverStatusItem && serverStatusIcon && serverStatusText) {
+            if (isOnline) {
+                serverStatusIcon.src = 'icon/online_server.svg';
+                serverStatusText.textContent = 'Server Online';
+                serverStatusItem.title = 'Server je online';
+            } else {
+                serverStatusIcon.src = 'icon/offline_server.svg';
+                serverStatusText.textContent = 'Server Offline';
+                serverStatusItem.title = 'Server je offline';
+            }
+        }
+    }
+
+    // Volání funkce pro aktualizaci stavu serveru při načtení stránky
+    // Předpokládáme, že server je zpočátku offline
+    updateServerStatus(false);
+
+    // Zde můžete přidat logiku pro kontrolu stavu serveru
+    // Například pomocí požadavku na váš Flask backend a podle odpovědi
+    // aktualizovat stav serveru.
+    fetch('http://localhost:5000/status') // Přidejte nový endpoint na serveru
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'online') {
+                updateServerStatus(true);
+            } else {
+                updateServerStatus(false);
+            }
+        })
+        .catch(error => {
+            console.error('Chyba při kontrole stavu serveru:', error);
+            updateServerStatus(false); // Pokud se nepodaří spojit, předpokládáme offline
+        });
 
     // Přidáno pro informační okno
     menuItems.forEach(item => {
@@ -244,3 +296,47 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+async function checkServerStatus() {
+    console.log("Kontrola stavu servera - začiatok.");
+    console.log("serverStatusItem:", serverStatusItem);
+    console.log("serverStatusIcon:", serverStatusIcon);
+    console.log("serverStatusText:", serverStatusText);
+    try {
+        const response = await fetch('http://localhost:5000/status');
+        console.log("Odpoveď na fetch:", response);
+        if (!response.ok) {
+            console.error(`Chyba HTTP: ${response.status}`);
+            updateServerStatus('offline');
+            return;
+        }
+        const data = await response.json();
+        console.log("Dáta z /status:", data);
+        updateServerStatus(data.status);
+    } catch (error) {
+        console.error('Chyba pri kontrole stavu serveru:', error);
+        console.log('Typ chyby:', error.name);
+        updateServerStatus('offline');
+    } finally {
+        console.log("Plánujem ďalšiu kontrolu o 5 sekúnd.");
+        setTimeout(checkServerStatus, 5000);
+    }
+}
+
+function updateServerStatus(status) {
+    if (status === 'online') {
+        serverStatusIcon.src = 'icon/online_server.svg';
+        serverStatusText.textContent = 'Server Online';
+        serverStatusItem.title = 'Server je online';
+    } else if (status === 'offline') {
+        serverStatusIcon.src = 'icon/offline_server.svg';
+        serverStatusText.textContent = 'Server Offline';
+        serverStatusItem.title = 'Server je offline';
+    } else if (status === 'shutting_down') {
+        serverStatusIcon.src = 'icon/loading_server.svg';
+        serverStatusText.textContent = 'Server se vypíná...';
+        serverStatusItem.title = 'Server se vypíná';
+    } else {
+        console.error('Neznámý stav serveru:', status);
+    }
+}
