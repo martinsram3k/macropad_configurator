@@ -128,7 +128,7 @@ button:focus {
   width: fit-content;
   padding: 1vh;
   overflow: visible;
-  border-left: 2px solid black;
+  border-left: 2px solid #C4C4C4;
   transform: translateX(0);
   /* Přidání ohraničení pro lepší viditelnost */
   transition: display 0.3s ease-in-out;
