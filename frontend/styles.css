@@ -440,6 +440,7 @@ img {
   align-items: center;
   vertical-align: middle;
   /* Může pomoci v některých případech */
+  resize: none;
 }
 
 .overeni_ne {

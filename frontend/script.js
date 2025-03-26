@@ -90,17 +90,22 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     async function sendDataToServer() {
+        if (!pushButton || pushButton.disabled) {
+            console.log("Odeslání dat na macropad zablokováno, protože server je offline.");
+            return;
+        }
+    
         const text = textarea.value;
         const activeLayer = document.querySelector(".dot_active");
         const layerNumber = activeLayer.getAttribute("data-key");
-
+    
         if (selectedButton && activeLayer && text) {
             const dataToSend = {
                 button: selectedButton,
                 layer: layerNumber,
                 function: text
             };
-
+    
             try {
                 pushButton.disabled = true; // Deaktivace tlačítka
                 const response = await fetch('http://localhost:5000/receivedata', {
@@ -110,10 +115,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     },
                     body: JSON.stringify(dataToSend)
                 });
-
+    
                 const data = await response.json();
                 console.log(`Odpověď z serveru: ${JSON.stringify(data)}`);
-
+    
                 if (data.status === "success" && data.message === "Data received and sent to serial port") {
                     showSuccessMessage("Data byla přijata správně");
                 } else if (data.status === "info" && data.message === "Serial port functionality is currently disabled.") {
@@ -307,56 +312,78 @@ const pushButton = document.getElementById('pushButton');
 
 // Funkce pro aktualizaci stavu serveru z backendu
 async function updateServerStatusFromBackend() {
+    const serverStatusButton = document.querySelector('.menu-item[data-key="server_status"]');
+
+    if (!serverStatusButton) {
+        console.warn("Element pro stav serveru nebyl nalezen.");
+        return;
+    }
+
     try {
         const response = await fetch('http://localhost:5000/status');
         if (!response.ok) {
             console.error(`Chyba HTTP: ${response.status}`);
             updateServerStatus(false, 'Error');
+            updatePushButtonState(false);
+            serverStatusButton.title = 'Server Status: Error'; // Aktualizace title tlačítka při chybě
             return;
         }
         const data = await response.json();
         if (data && data.status) {
             let statusText = '';
             let isOnline = false;
+            let buttonTitle = 'Server Status: ';
+
             switch (data.status) {
                 case 'loading':
                     statusText = 'Loading';
+                    buttonTitle += 'Loading';
                     break;
                 case 'online':
                     statusText = 'Online';
                     isOnline = true;
+                    buttonTitle += `Online (Ping: ${data.ping}ms, Port: ${data.port})`;
                     break;
                 case 'offline':
-                    statusText = 'Loading'; // Změna: Při stavu "offline" zobrazit "Loading"
-                    // Nastavíme stav na "loading" a pak se server vypne
+                    statusText = 'Loading';
                     updateServerStatus(false, statusText);
-                    await new Promise(resolve => setTimeout(resolve, 3000)); // Pauza 3 sekundy
-                    statusText = 'Offline'; // Po pauze nastavíme na "Offline"
+                    updatePushButtonState(false);
+                    buttonTitle += 'Offline';
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    statusText = 'Offline';
                     updateServerStatus(false, statusText);
+                    updatePushButtonState(false);
+                    buttonTitle = 'Server Status: Offline';
                     isOnline = false;
                     break;
                 default:
                     statusText = 'Unknown';
+                    buttonTitle += 'Unknown';
                     isOnline = false;
                     break;
             }
             if (data.status !== 'offline') {
                 updateServerStatus(isOnline, statusText);
-                updatePushButtonState(isOnline); // Aktualizovat stav tlačítka
+                updatePushButtonState(isOnline);
+                serverStatusButton.title = buttonTitle; // Aktualizace title tlačítka
             } else {
-                updatePushButtonState(false); // Nastavit tlačítko na offline
+                serverStatusButton.title = buttonTitle; // Aktualizace title tlačítka pro offline
             }
         } else {
             updateServerStatus(false, 'Error');
-            updatePushButtonState(false); // Nastavit tlačítko na offline při chybě
+            updatePushButtonState(false);
+            serverStatusButton.title = 'Server Status: Error'; // Aktualizace title tlačítka při neplatné odpovědi
             console.warn('Neplatná odpověď z /status endpointu:', data);
         }
     } catch (error) {
         console.error('Chyba při dotazu na stav serveru:', error);
         updateServerStatus(false, 'Error');
-        updatePushButtonState(false); // Nastavit tlačítko na offline při chybě
+        updatePushButtonState(false);
+        serverStatusButton.title = 'Server Status: Error'; // Aktualizace title tlačítka při chybě dotazu
     }
 }
+
+
 
 // Funkce pro aktualizaci zobrazení stavu serveru v HTML
 function updateServerStatus(isOnline, statusText) {

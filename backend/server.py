@@ -73,6 +73,8 @@ CORS(app)
 # check_serial_thread() # Spusť periodickou kontrolu vlákna
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
+def get_ping():
+    return round(time.time() * 1000) % 100  # Jednoduchá simulace
 
 server_status = "loading" # Nastavíme počáteční stav na loading
 _shutting_down = False # Flag pro kontrolu, zda probíhá vypínání
@@ -105,7 +107,13 @@ def index():
 
 @app.route('/status')
 def get_status():
-    return jsonify({"status": server_status})
+    status = "online"  # Nebo logiku pro zjištění aktuálního stavu
+    ping = get_ping()
+    return jsonify({
+        'status': status,
+        'ping': ping,
+        'port': server_port
+    })
 
 # @app.route('/receivedata', methods=['POST'])
 # def receivedata():
