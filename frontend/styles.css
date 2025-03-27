@@ -5,6 +5,8 @@ body {
   font-style: normal;
   font-variation-settings: "slnt" 0, "wght" 400;
   overflow: hidden;
+  transition: all 0.1s ease-in-out;
+
 }
 
 .container,
@@ -19,6 +21,7 @@ nav {
   width: fit-content;
   overflow: visible;
   min-width: fit-content;
+  
 }
 
 .menucontainer {
@@ -26,7 +29,10 @@ nav {
   overflow: visible;
   width: fit-content;
   min-width: fit-content;
+  
 }
+
+
 
 ul {
   list-style-type: none;
@@ -56,6 +62,7 @@ ul li {
   left: 0;
   z-index: 99999;
   /* Nastav vysokou hodnotu z-index */
+  
 }
 
 .sidenav button {
@@ -78,6 +85,7 @@ ul li {
   border: none;
   outline: none;
   width: fit-content;
+  
 }
 
 button:focus {
@@ -181,12 +189,13 @@ button:focus {
   padding: 0;
   /* Odstraněno padding */
   text-align: center;
+  transition: display 1s ease-in-out;
 }
 
 
 .sidenav:hover .menu-item {
   width: 35vh;
-  transition: width 1s ease;
+  transition: all 1s ease-in-out;
 }
 
 .sidenav:hover .menu-text {
@@ -208,7 +217,7 @@ button:focus {
   padding: 0 2vh;
   /* Přidáno odsazení textu */
   border-radius: 0;
-  transition: display 0.3s ease;
+  transition: all 1s ease-in-out;
 }
 
 .container {

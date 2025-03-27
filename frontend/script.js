@@ -434,3 +434,4 @@ updatePushButtonState(false); // Nastavit počáteční stav tlačítka na offli
 
 // Nastavení intervalu pro periodickou aktualizaci stavu (např. každé 3 sekundy)
 setInterval(updateServerStatusFromBackend, 3000);
+
